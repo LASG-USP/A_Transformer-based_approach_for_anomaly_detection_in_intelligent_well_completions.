@@ -45,32 +45,4 @@ O arquivo transformers_modified_art2.py é um script Python que implementa um mo
 
     Cálculo de Métricas de Desempenho:
         Calcula várias métricas de desempenho como acurácia, precisão, recall, especificidade, F1 score, e AUC.
-+---------------------------------------------------------------+
-|                        Transformer Model                      |
-+---------------------------------------------------------------+
-|                                                               |
-|  Input:                                                       |
-|  - Previous window of time series data (prev_window)          |
-|  - Current window of time series data (current_window)        |
-|                                                               |
-|  Architecture:                                                |
-|  1. Encoder:                                                  |
-|     - Linear layer to embed input features (encoder_embedding)|
-|     - Transformer Encoder with multiple layers                |
-|       (TransformerEncoderLayer)                               |
-|  2. Decoder:                                                  |
-|     - Linear layer to embed output features (decoder_embedding)|
-|     - Linear layer to produce final output (decoder)          |
-|                                                               |
-|  Forward Pass:                                                |
-|  - Encode previous window using encoder_embedding and         |
-|    Transformer Encoder                                        |
-|  - Encode current window using decoder_embedding              |
-|  - Loop through the sequence length of encoded current window |
-|    to generate predictions                                    |
-|  - Stack the output tensors along the window size dimension   |
-|                                                               |
-|  Output:                                                      |
-|  - Predicted current window of time series data               |
-|                                                               |
-+---------------------------------------------------------------+
+
