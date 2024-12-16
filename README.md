@@ -45,7 +45,6 @@ O arquivo transformers_modified_art2.py é um script Python que implementa um mo
 
     Cálculo de Métricas de Desempenho:
         Calcula várias métricas de desempenho como acurácia, precisão, recall, especificidade, F1 score, e AUC.
-
 +---------------------------------------------------------------+
 |                        Transformer Model                      |
 +---------------------------------------------------------------+
