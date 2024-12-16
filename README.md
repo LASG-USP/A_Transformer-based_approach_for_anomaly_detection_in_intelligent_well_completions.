@@ -11,6 +11,35 @@ O arquivo transformers_modified_art2.py é um script Python que implementa um mo
 
     Definição do Modelo Transformer:
         Define a classe TransformerModel que herda de nn.Module e implementa o modelo Transformer para previsão de séries temporais. Inclui camadas de codificação e decodificação.
+    
+ +---------------------------------------------------------------+
+|                        Transformer Model                      |
++---------------------------------------------------------------+
+|                                                               |
+|  Input:                                                       |
+|  - Previous window of time series data (prev_window)          |
+|  - Current window of time series data (current_window)        |
+|                                                               |
+|  Architecture:                                                |
+|  1. Encoder:                                                  |
+|     - Linear layer to embed input features (encoder_embedding)|
+|     - Transformer Encoder with multiple layers                |
+|       (TransformerEncoderLayer)                               |
+|  2. Decoder:                                                  |
+|     - Linear layer to embed output features (decoder_embedding)|
+|     - Linear layer to produce final output (decoder)          |
+|                                                               |
+|  Forward Pass:                                                |
+|  - Encode previous window using encoder_embedding and         |
+|    Transformer Encoder                                        |
+|  - Encode current window using decoder_embedding              |
+|  - Loop through the sequence length of encoded current window |
+|    to generate predictions                                    |
+|  - Stack the output tensors along the window size dimension   |
+|                                                               |
+|  Output:                                                      |
+|  - Predicted current window of time series data  
+-----------------------------------------------------------------
 
     Configuração do Dispositivo:
         Configura o dispositivo para usar GPU se disponível, caso contrário, usa CPU.
@@ -38,6 +67,7 @@ O arquivo transformers_modified_art2.py é um script Python que implementa um mo
 
     Previsão e Detecção de Anomalias:
         Carrega novos dados para previsão, realiza pré-processamento, faz previsões usando o modelo treinado e detecta anomalias com base nas diferenças de erro.
+
 
     Plotagem dos Resultados:
         Plota os resultados das previsões e anomalias detectadas.
