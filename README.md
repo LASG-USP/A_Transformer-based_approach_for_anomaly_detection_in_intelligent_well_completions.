@@ -1,3 +1,123 @@
+#EN
+The transformers_modified_art2.py script is a Python implementation of a Transformer model for time series forecasting and anomaly detection. Here's a detailed description of the content and functionalities of the script:
+Import Statements
+
+    The script imports essential libraries such as torch, pandas, matplotlib.pyplot, sklearn.preprocessing, plotly.graph_objects, and others.
+
+SMAPE Loss Function
+
+    The SMAPELoss class inherits from nn.Module and implements the Symmetric Mean Absolute Percentage Error (SMAPE) loss function.
+    This loss function is particularly suited for time series forecasting, as it accounts for both overestimation and underestimation errors.
+
+Time Series Dataset Class
+
+    The TimeSeriesDataset class inherits from Dataset and prepares time series data using a sliding window approach.
+    It divides the data into smaller windows for training and prediction purposes, enabling the Transformer model to process sequential data effectively.
+
+Transformer Model Definition
+
+    The TransformerModel class inherits from nn.Module and implements a Transformer architecture for time series forecasting.
+    Key Components:
+        Embedding Layers: For both the encoder (encoder_embedding) and decoder (decoder_embedding).
+        Encoder: Uses TransformerEncoderLayer and TransformerEncoder for multi-layer encoding.
+        Decoder: A linear layer maps the encoder's output to the desired prediction size.
+    Architecture Parameters:
+        input_size: Number of input features.
+        output_size: Number of output features.
+        window_size: Sliding window size.
+        d_model: Model dimension for embeddings.
+        nhead: Number of attention heads.
+        num_layers: Number of Transformer layers.
+    Forward Pass:
+        The method receives two data windows (prev_window and current_window).
+        These windows are embedded, passed through the encoder, and decoded to predict the next data window.
+
+Device Configuration
+
+    The script automatically configures the device to use a GPU if available, otherwise defaults to CPU.
+
+Data Loading and Preprocessing
+
+    Loading Data: Data is read from CSV files.
+    Preprocessing:
+        Normalization of data for better model performance.
+        Handling missing values (e.g., filling nulls).
+        Conversion of data into PyTorch tensors.
+
+DataLoader Creation
+
+    Data is split into training and validation sets using train_test_split.
+    DataLoader is used to generate mini-batches of data for training and validation.
+
+Loss Function and Optimizer
+
+    Loss Function: The script uses SMAPELoss to calculate forecasting errors.
+    Optimizer: The Adam optimizer is employed with a defined learning rate to update model weights.
+
+Training Loop
+
+    The training process involves:
+        Setting the model to training mode (model.train()).
+        Iterating through the training data in batches.
+        Performing forward passes, computing the loss, backpropagating errors, and updating weights.
+    Validation Phase:
+        After each training epoch, the model is evaluated on validation data (model.eval()).
+        Validation loss is computed to monitor overfitting.
+    Loss Tracking:
+        Training and validation losses are plotted across epochs for performance analysis.
+
+Model Saving and Loading
+
+    The trained model is saved to a file using torch.save.
+    This allows the model to be reloaded later for making predictions on unseen data.
+
+Evaluation and Anomaly Detection
+Forecasting on New Data
+
+    Data Preprocessing:
+        New data is read, normalized, and converted to tensors.
+        Predictions are made using the trained model.
+        Predictions are denormalized for comparison with actual values.
+    Error Calculation:
+        The difference between predictions and actual values is computed.
+        Mean and standard deviation of errors are calculated over a sliding window.
+    Anomaly Detection:
+        A threshold is defined (e.g., three times the standard deviation).
+        Errors exceeding the threshold are flagged as anomalies.
+
+Visualization
+
+    The script uses plotly to create interactive plots for:
+        Predictions vs. actual values.
+        Errors and anomaly detection thresholds.
+        Highlighting detected anomalies on the time series data.
+
+Performance Metrics
+
+    The script calculates various metrics to evaluate model performance:
+        Accuracy (ACC): Measures the percentage of correct predictions.
+        Precision (PR): Evaluates how many of the predicted anomalies are true anomalies.
+        Recall (REC): Measures the proportion of actual anomalies that were detected.
+        Specificity (SP): Indicates how well the model avoids false alarms.
+        F1 Score: Harmonic mean of precision and recall.
+        AUC: Area Under the Curve, summarizing the performance across different thresholds.
+
+Summary of Capabilities
+
+    Time Series Forecasting:
+        Predicts future values based on historical data.
+        Uses Transformer architecture for sequential pattern learning.
+    Anomaly Detection:
+        Detects deviations in the data using error thresholds.
+        Classifies anomalies with high accuracy and precision.
+    Visualization:
+        Provides clear, interactive visual insights into predictions and anomalies.
+    Scalability:
+        Supports large datasets with GPU acceleration for faster training.
+
+This implementation showcases a robust solution for time series forecasting and anomaly detection using the powerful Transformer model architecture.
+
+#PTBR
 O arquivo transformers_modified_art2.py é um script Python que implementa um modelo de Transformer para previsão de séries temporais e detecção de anomalias. Abaixo está uma descrição detalhada do conteúdo e das funcionalidades do arquivo:
 
     Importações:
